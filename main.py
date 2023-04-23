@@ -40,6 +40,22 @@ class qiang:
         login_button = self.driver.find_element(By.ID, "dologin")
         login_button.click()
 
+        # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
+        login_element = self.driver.find_element(By.ID, "loginIframe")
+
+        # 使用switch_to.frame()方法切换到该iframe中
+        self.driver.switch_to.frame(login_element)
+
+        try:
+            # 点击QQ头像，一定要登录QQ！
+            elem = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'qlogin_list')))
+            # 执行JavaScript代码点击
+            self.driver.execute_script("document.querySelector('.face').click()")
+            print('登录成功！')
+        except selenium.common.exceptions.TimeoutException:
+            print(f'无弹出视频或视频出现时间超过秒')
+
+        self.driver.switch_to.default_content()
 
     def _init(self):
 
@@ -56,7 +72,7 @@ class qiang:
 
         # if self.driver.find_element_by_id()
 
-        # time.sleep(999999)
+        time.sleep(999999)
 
     def run(self):
         self._init()
