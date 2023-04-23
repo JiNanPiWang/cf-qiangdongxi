@@ -1,5 +1,7 @@
 import time
 import datetime
+
+import selenium.common.exceptions
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -20,26 +22,25 @@ class qiang:
         # 设置窗口大小
         # self.driver.set_window_size(1300, 800)
         # print('调整前尺寸:', self.driver.get_window_size())
-        # 显式等待
-        # 这里进行手动登录，可以扫码，也可以输入账号密码点击登录
-        # 等待目标元素加载完成
-        wait = WebDriverWait(self.driver, 10)
 
         # 找到弹出的视频
-        elem = wait.until(EC.presence_of_element_located((By.ID, 'pop-video')))
+        try:
+            # 等待时间5秒，如果不出现则抛出超时异常
+            elem = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, 'pop-video')))
+            # 执行JavaScript代码关闭视频弹窗
+            self.driver.execute_script("document.querySelector('.dialog01#pop-video .dia-close').click()")
+            print('登录成功！')
+        except selenium.common.exceptions.TimeoutException:
+            print('无弹出视频或超时')
 
-        # 执行JavaScript代码关闭视频弹窗
-        self.driver.execute_script("document.querySelector('.dialog01#pop-video .dia-close').click()")
         # if self.driver.find_element_by_id()
 
-        time.sleep(1000)
-        print('登录成功！')
-
+        # time.sleep(1000)
 
     def run(self):
-        pass
+        self._login()
 
 
 if __name__ == '__main__':
     x = qiang()
-    x._login()
+    x.run()
