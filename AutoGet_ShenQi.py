@@ -34,4 +34,4 @@ class AutoGet_ShenQi(AutoGet):
         except selenium.common.exceptions.ElementNotInteractableException:
             pass
 
-        super()._close_new_window()
+        super()._close_new_window('LoginedCallback')

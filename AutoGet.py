@@ -48,8 +48,6 @@ class AutoGet:
         except selenium.common.exceptions.ElementClickInterceptedException:
             print('直接弹出登录窗口，无需点击登录按钮')
 
-
-
     def _open_new_window(self, new_window_url):
         # 开一个新窗口，url是new_window_url
         # 获取当前窗口的句柄
@@ -68,12 +66,13 @@ class AutoGet:
                 # 在新窗口中进行操作
                 # ...
 
-    def _close_new_window(self):
-        # 等五秒，关闭现在的窗口，切回原来的窗口
-        time.sleep(5)
+    def _close_new_window(self, close_icon: str):
+        # 关闭现在的窗口，切回原来的窗口
+        wait_time = 5
         try:
-            # 查找是否存在 LoginedCallback 字符串
-            self.driver.find_element(By.XPATH, "//*[contains(text(), 'LoginedCallback')]")
+            # 查找是否存在 close_icon(LoginedCallback) 字符串
+            WebDriverWait(self.driver, wait_time).until(
+                EC.presence_of_element_located((By.XPATH, f"//*[contains(text(), '{close_icon}')]")))
         except selenium.common.exceptions.NoSuchElementException:
             # 如果不存在，则说明页面没有改变，不需要关闭
             pass
