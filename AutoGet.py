@@ -40,14 +40,17 @@ class AutoGet:
         # self.driver.set_window_size(1300, 800)
         # print('调整前尺寸:', self.driver.get_window_size())
 
-    def _login(self):
-        # 正常情况登录
-        # 点击登录按钮
+    def _touch_top_login_button(self):
+        # 点击最上方登录按钮
         try:
             login_button = self.driver.find_element(By.ID, "dologin")
             login_button.click()
         except selenium.common.exceptions.ElementClickInterceptedException:
             print('直接弹出登录窗口，无需点击登录按钮')
+
+    def _login(self):
+        # 正常情况登录
+        self._touch_top_login_button()
 
         # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
         login_element = self.driver.find_element(By.ID, "loginIframe")
@@ -118,23 +121,8 @@ class AutoGet:
     def _init(self):
         # 初始化，登录
         self.driver.get(self.url)
-
         # 设置窗口大小
         self._set_screen_size()
-
-        # 关闭弹出视频
-        self._shut_down_pop_video()
-
-        # 登录
-        if self.is_chaojishenqi:
-            self._chaojishenqi_login()
-        else:
-            self._login()
-
-        # 关闭弹出视频
-        self._shut_down_pop_video()
-        time.sleep(2)
-        self._shut_down_pop_video()
 
     def _get(self):
         pass

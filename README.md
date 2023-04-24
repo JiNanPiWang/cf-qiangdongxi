@@ -1,1 +1,1 @@
-# cf-qiangdongxi
+# 基于selenium的穿越火线活动网站定时自动领取道具方法，适用于多个活动
