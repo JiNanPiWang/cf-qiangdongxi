@@ -12,6 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class AutoGet_Normal(AutoGet):
     def __init__(self, url):
         # 父类需要用到self的内容时才传入self参数，如父类print(f"Hello, I'm {self.name}")
@@ -54,3 +55,13 @@ class AutoGet_Normal(AutoGet):
         # <a href="javascript:;" class="sp nav4" id="nav4" data-num="4" onclick="PTTSendClick('btn','click4','切换4 ');">
         # 选择class="sp nav4"即可，需注意父类
         self.driver.execute_script("document.querySelector('.nvabox2 .sp.nav4').click()")
+
+    def _get(self):
+        # 等待a标签出现
+        wait = WebDriverWait(self.driver, 10)
+        element = wait.until(EC.presence_of_element_located(
+            (By.XPATH,
+             '//div[@class="p4box1"]/a[@href="javascript:DM.df.getClick1(\'933316\',\'\',\'\',\'\',\'2\');"]')))
+
+        # 点击a标签
+        element.click()
