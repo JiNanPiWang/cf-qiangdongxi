@@ -14,16 +14,12 @@ class AutoGet:
     def __init__(self, url):
         self.url = url
         self.driver = webdriver.Edge('/path/to/edgedriver')
-        self.is_chaojishenqi = False
         self.current_window_handle = None
-        # 判断是否是超级神器，包含/lr
-        if '/lr' in self.url:
-            self.is_chaojishenqi = True
 
     def _shut_down_pop_video(self):
         # 找到弹出的视频
         # 等待时间5秒，如果不出现则抛出超时异常
-        wait_time = 5
+        wait_time = 10
         try:
             # 尝试找到是否出现弹出视频
             elem = WebDriverWait(self.driver, wait_time).until(EC.presence_of_element_located((By.ID, 'pop-video')))
@@ -49,7 +45,7 @@ class AutoGet:
             print('直接弹出登录窗口，无需点击登录按钮')
 
     def _open_new_window(self, new_window_url):
-        # 开一个新窗口，url是new_window_url
+        # 开一个新窗口，并将driver转换到该窗口，url是new_window_url
         # 获取当前窗口的句柄
         self.current_window_handle = self.driver.current_window_handle
 
@@ -79,6 +75,8 @@ class AutoGet:
         else:
             # 如果存在，则说明页面已经改变，需要关闭
             self.driver.close()
+
+    def _return_to_current_window(self):
         # 切回原来的窗口
         self.driver.switch_to.window(self.current_window_handle)
         self.driver.refresh()
@@ -89,16 +87,15 @@ class AutoGet:
         # 设置窗口大小
         self._set_screen_size()
 
-    def _get(self):
+    def _turn_to_the_page(self):
         pass
-        # self.driver.execute_script("document.querySelector('tab6 .dia-close').click()")
+
+    def _get(self):
+        # 虚函数
+        pass
 
     def run(self):
         self._init()
+        self._turn_to_the_page()
         self._get()
         time.sleep(999999)
-
-
-if __name__ == '__main__':
-    x = AutoGet("https://cf.qq.com/cp/a20230308rlr/lr/index.shtml")
-    x.run()

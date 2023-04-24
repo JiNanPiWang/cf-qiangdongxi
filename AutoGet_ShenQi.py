@@ -35,3 +35,7 @@ class AutoGet_ShenQi(AutoGet):
             pass
 
         super()._close_new_window('LoginedCallback')
+        super()._return_to_current_window()
+
+    def _turn_to_the_page(self):
+        self.driver.execute_script("document.querySelector('.tab_2.sp1').click()")

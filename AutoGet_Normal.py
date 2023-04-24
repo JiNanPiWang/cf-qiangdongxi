@@ -1,3 +1,5 @@
+import random
+
 from AutoGet import AutoGet
 import time
 import datetime
@@ -26,7 +28,7 @@ class AutoGet_Normal(AutoGet):
 
         # 关闭弹出视频
         self._shut_down_pop_video()
-        time.sleep(2)
+        time.sleep(random.uniform(1, 2))
         self._shut_down_pop_video()
 
     def _login(self):
@@ -47,3 +49,8 @@ class AutoGet_Normal(AutoGet):
 
         # 切换回去
         self.driver.switch_to.default_content()
+
+    def _turn_to_the_page(self):
+        # <a href="javascript:;" class="sp nav4" id="nav4" data-num="4" onclick="PTTSendClick('btn','click4','切换4 ');">
+        # 选择class="sp nav4"即可，需注意父类
+        self.driver.execute_script("document.querySelector('.nvabox2 .sp.nav4').click()")

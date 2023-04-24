@@ -14,4 +14,5 @@ def test_AutoGet_Normal():
 
 
 if __name__ == '__main__':
-    test_AutoGet_ShenQi()
+    # test_AutoGet_ShenQi()
+    test_AutoGet_Normal()
