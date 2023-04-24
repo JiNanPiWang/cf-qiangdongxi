@@ -48,24 +48,7 @@ class AutoGet:
         except selenium.common.exceptions.ElementClickInterceptedException:
             print('直接弹出登录窗口，无需点击登录按钮')
 
-    def _login(self):
-        # 正常情况登录
-        self._touch_top_login_button()
 
-        # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
-        login_element = self.driver.find_element(By.ID, "loginIframe")
-
-        # 使用switch_to.frame()方法切换到该iframe中
-        self.driver.switch_to.frame(login_element)
-
-        # 点击QQ头像，一定要登录QQ！
-        # elem = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'qlogin_list')))
-        # 执行JavaScript代码点击
-        self.driver.execute_script("document.querySelector('.face').click()")
-        print('登录成功！')
-
-        # 切换回去
-        self.driver.switch_to.default_content()
 
     def _open_new_window(self, new_window_url):
         # 开一个新窗口，url是new_window_url
@@ -99,23 +82,6 @@ class AutoGet:
             self.driver.close()
         # 切回原来的窗口
         self.driver.switch_to.window(self.current_window_handle)
-
-    def _chaojishenqi_login(self):
-        # 超级神器登录需要，先切换frame，再打开登录链接登录
-        qqLoginFrame = self.driver.find_element(By.CLASS_NAME, 'qqLoginFrame')
-        qqLoginUrl = qqLoginFrame.get_attribute('src')
-        # 开一个新页面，登录qq
-        self._open_new_window(qqLoginUrl)
-        self.driver.get(qqLoginUrl)
-
-        # 此处偷懒，.face应该不是可交互按钮
-        try:
-            self.driver.execute_script("document.querySelector('.face').click()")
-        except selenium.common.exceptions.ElementNotInteractableException:
-            pass
-
-        self._close_new_window()
-
         self.driver.refresh()
 
     def _init(self):

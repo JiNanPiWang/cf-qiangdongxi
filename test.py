@@ -1,9 +1,18 @@
-import requests
-import chardet
+class Parent:
+    def __init__(self):
+        self.name = "Parent"
 
-url = "https://cf.qq.com"
-cookie = {"session_id": "<your_login_session_id>"}
+    def greet(self):
+        print(f"Hello, I'm {self.name}")
 
-response = requests.get(url, cookies=cookie)
-encoding = chardet.detect(response.content)['encoding']
-print(response.content.decode(encoding))
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        self.name = "Child"
+
+    def say_hello(self):
+        # 不需要传递 self 参数
+        super().greet()
+
+child = Child()
+child.say_hello()  # 输出：Hello, I'm C

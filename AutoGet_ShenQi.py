@@ -18,7 +18,20 @@ class AutoGet_ShenQi(AutoGet):
         super()._init()
 
         # 登录
-        if self.is_chaojishenqi:
-            self._chaojishenqi_login()
-        else:
-            self._login()
+        self._login()
+
+    def _login(self):
+        # 超级神器登录需要，先切换frame，再打开登录链接登录
+        qqLoginFrame = self.driver.find_element(By.CLASS_NAME, 'qqLoginFrame')
+        qqLoginUrl = qqLoginFrame.get_attribute('src')
+        # 开一个新页面，登录qq
+        super()._open_new_window(qqLoginUrl)
+        self.driver.get(qqLoginUrl)
+
+        # 此处偷懒，.face应该不是可交互按钮
+        try:
+            self.driver.execute_script("document.querySelector('.face').click()")
+        except selenium.common.exceptions.ElementNotInteractableException:
+            pass
+
+        super()._close_new_window()
