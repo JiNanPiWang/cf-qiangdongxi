@@ -10,6 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class AutoGet_ShenQi(AutoGet):
     def __init__(self, url):
         super().__init__(url)
@@ -24,7 +25,6 @@ class AutoGet_ShenQi(AutoGet):
         # 超级神器登录需要，先切换frame，再打开登录链接登录
         wait = WebDriverWait(self.driver, 10)
         qqLoginFrame = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'qqLoginFrame')))
-        # qqLoginFrame = self.driver.find_element(By.CLASS_NAME, 'qqLoginFrame')
         qqLoginUrl = qqLoginFrame.get_attribute('src')
         # 开一个新页面，登录qq
         super()._open_new_window(qqLoginUrl)
@@ -45,6 +45,22 @@ class AutoGet_ShenQi(AutoGet):
     def _click_LingQu(self):
         # 示例见normal
         wait = WebDriverWait(self.driver, 10)
-        a = wait.until(EC.presence_of_element_located((By.XPATH, './/a[@href="javascript:OUT.user.getTeamPointGift(12);"]')))
+        button = wait.until(EC.presence_of_element_located((By.XPATH,
+                                                            './/a[@href="javascript:OUT.user.getTeamPointGift(12);"]')))
         # 点击a标签
-        a.click()
+        button.click()
+
+    def _click_QueDing_alert(self):
+        # 等待确定按钮出现
+        wait = WebDriverWait(self.driver, 10)
+        confirm_button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'amsdialog_bconfirm')))
+
+        # 点击确定按钮
+        confirm_button.click()
+
+    def run(self):
+        super().run()
+        time.sleep(1.2) # 太快会被拦截
+        self._click_LingQu()
+        self._click_QueDing_alert()
+        time.sleep(999999)

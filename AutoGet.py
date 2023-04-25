@@ -93,11 +93,11 @@ class AutoGet:
     def _click_LingQu(self):
         pass
 
-    def _click_QueDing(self):
+    def _click_QueDing_alert(self):
         pass
 
     def run(self):
+        # 登录并切换到页面
         self._init()
         self._turn_to_the_page()
-        self._click_LingQu()
-        time.sleep(999999)
+        # time.sleep(999999)

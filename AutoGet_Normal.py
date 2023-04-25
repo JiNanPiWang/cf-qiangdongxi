@@ -75,3 +75,18 @@ class AutoGet_Normal(AutoGet):
 
         # 点击a标签
         a.click()
+
+    def _click_QueDing_alert(self):
+        # 等待确定按钮出现
+        wait = WebDriverWait(self.driver, 10)
+        confirm_button = wait.until(EC.element_to_be_clickable((By.ID, 'lotteryAlertDialogBtn')))
+
+        # 点击确定按钮
+        confirm_button.click()
+
+    def run(self):
+        super().run()
+        self._click_LingQu()
+        self._click_QueDing_alert()
+        time.sleep(999999)
+        
