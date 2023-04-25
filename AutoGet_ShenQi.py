@@ -22,7 +22,9 @@ class AutoGet_ShenQi(AutoGet):
 
     def _login(self):
         # 超级神器登录需要，先切换frame，再打开登录链接登录
-        qqLoginFrame = self.driver.find_element(By.CLASS_NAME, 'qqLoginFrame')
+        wait = WebDriverWait(self.driver, 10)
+        qqLoginFrame = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'qqLoginFrame')))
+        # qqLoginFrame = self.driver.find_element(By.CLASS_NAME, 'qqLoginFrame')
         qqLoginUrl = qqLoginFrame.get_attribute('src')
         # 开一个新页面，登录qq
         super()._open_new_window(qqLoginUrl)
@@ -39,3 +41,10 @@ class AutoGet_ShenQi(AutoGet):
 
     def _turn_to_the_page(self):
         self.driver.execute_script("document.querySelector('.tab_2.sp1').click()")
+
+    def _click_LingQu(self):
+        # 示例见normal
+        wait = WebDriverWait(self.driver, 10)
+        a = wait.until(EC.presence_of_element_located((By.XPATH, './/a[@href="javascript:OUT.user.getTeamPointGift(12);"]')))
+        # 点击a标签
+        a.click()

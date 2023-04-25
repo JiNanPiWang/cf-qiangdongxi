@@ -90,12 +90,14 @@ class AutoGet:
     def _turn_to_the_page(self):
         pass
 
-    def _get(self):
-        # 虚函数
+    def _click_LingQu(self):
+        pass
+
+    def _click_QueDing(self):
         pass
 
     def run(self):
         self._init()
         self._turn_to_the_page()
-        self._get()
+        self._click_LingQu()
         time.sleep(999999)

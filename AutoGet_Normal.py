@@ -56,7 +56,7 @@ class AutoGet_Normal(AutoGet):
         # 选择class="sp nav4"即可，需注意父类
         self.driver.execute_script("document.querySelector('.nvabox2 .sp.nav4').click()")
 
-    def _get(self):
+    def _click_LingQu(self):
         # <div class="p4box1 flex">
         #     <div class="prop-item">
         #         <p>M200-赤血龙魂</p>
