@@ -1,5 +1,6 @@
 import time
-import datetime
+from datetime import datetime, timedelta
+import random
 
 import selenium.common.exceptions
 from selenium import webdriver
@@ -15,6 +16,7 @@ class AutoGet:
         self.url = url
         self.driver = webdriver.Edge('/path/to/edgedriver')
         self.current_window_handle = None
+        self.target_time = None
 
     def _shut_down_pop_video(self):
         # 找到弹出的视频
@@ -100,4 +102,12 @@ class AutoGet:
         # 登录并切换到页面
         self._init()
         self._turn_to_the_page()
+        if self.target_time is not None:
+            # 等待抢购时间到达
+            while datetime.now() < self.target_time:
+                time.sleep(0.01)  # 每隔0.1秒检查一次时间
+
+            while (True):
+                self._click_LingQu()
+                self._click_QueDing_alert()
         # time.sleep(999999)

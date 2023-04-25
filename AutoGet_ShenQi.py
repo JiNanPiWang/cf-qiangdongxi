@@ -14,6 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class AutoGet_ShenQi(AutoGet):
     def __init__(self, url):
         super().__init__(url)
+        self.target_time = None
 
     def _init(self):
         super()._init()

@@ -2,7 +2,7 @@ import random
 
 from AutoGet import AutoGet
 import time
-import datetime
+from datetime import datetime, timedelta
 
 import selenium.common.exceptions
 from selenium import webdriver
@@ -17,6 +17,7 @@ class AutoGet_Normal(AutoGet):
     def __init__(self, url):
         # 父类需要用到self的内容时才传入self参数，如父类print(f"Hello, I'm {self.name}")
         super().__init__(url)
+        self.target_time = datetime.strptime('2023-04-25 13:55:00', '%Y-%m-%d %H:%M:%S')
 
     def _init(self):
         super()._init()
@@ -86,7 +87,6 @@ class AutoGet_Normal(AutoGet):
 
     def run(self):
         super().run()
-        self._click_LingQu()
-        self._click_QueDing_alert()
+
         time.sleep(999999)
         
