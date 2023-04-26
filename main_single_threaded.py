@@ -1,7 +1,6 @@
-import get_time
-from AutoGet import AutoGet
-from AutoGet_ShenQi import AutoGet_ShenQi
-from AutoGet_Normal import AutoGet_Normal
+from utils import get_time
+from base_class.AutoGet_ShenQi import AutoGet_ShenQi
+from base_class.AutoGet_Normal import AutoGet_Normal
 
 
 def test_AutoGet_ShenQi():
