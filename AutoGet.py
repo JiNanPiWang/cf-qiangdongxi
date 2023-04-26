@@ -1,6 +1,7 @@
 import time
 from datetime import datetime, timedelta
 import random
+import get_time
 
 import selenium.common.exceptions
 from selenium import webdriver
@@ -12,11 +13,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class AutoGet:
-    def __init__(self, url):
+    def __init__(self, url, target_time):
         self.url = url
         self.driver = webdriver.Edge('/path/to/edgedriver')
         self.current_window_handle = None
-        self.target_time = None
+        self.target_time = datetime.strptime(target_time, '%Y-%m-%d %H:%M:%S')
 
     def _shut_down_pop_video(self):
         # 找到弹出的视频
@@ -107,7 +108,7 @@ class AutoGet:
             while datetime.now() < self.target_time:
                 time.sleep(0.01)  # 每隔0.1秒检查一次时间
 
-            while (True):
+            while True:
                 self._click_LingQu()
                 self._click_QueDing_alert()
         # time.sleep(999999)

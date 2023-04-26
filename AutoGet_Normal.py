@@ -14,10 +14,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class AutoGet_Normal(AutoGet):
-    def __init__(self, url):
+    def __init__(self, url, target_time):
         # 父类需要用到self的内容时才传入self参数，如父类print(f"Hello, I'm {self.name}")
-        super().__init__(url)
-        self.target_time = datetime.strptime('2023-04-25 13:55:00', '%Y-%m-%d %H:%M:%S')
+        super().__init__(url, target_time)
 
     def _init(self):
         super()._init()
@@ -89,4 +88,3 @@ class AutoGet_Normal(AutoGet):
         super().run()
 
         time.sleep(999999)
-        

@@ -1,6 +1,9 @@
 from AutoGet import AutoGet
+import random
+
+from AutoGet import AutoGet
 import time
-import datetime
+from datetime import datetime, timedelta
 
 import selenium.common.exceptions
 from selenium import webdriver
@@ -12,9 +15,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class AutoGet_ShenQi(AutoGet):
-    def __init__(self, url):
-        super().__init__(url)
-        self.target_time = None
+    def __init__(self, url, target_time):
+        # target_time: 2023-04-25 13:55:00
+        super().__init__(url, target_time)
 
     def _init(self):
         super()._init()
@@ -61,7 +64,4 @@ class AutoGet_ShenQi(AutoGet):
 
     def run(self):
         super().run()
-        time.sleep(1.2) # 太快会被拦截
-        self._click_LingQu()
-        self._click_QueDing_alert()
         time.sleep(999999)
