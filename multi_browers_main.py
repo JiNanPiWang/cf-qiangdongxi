@@ -1,22 +1,37 @@
+import os
 import threading
-from selenium import webdriver
 
-def run_browser():
-    driver = webdriver.Chrome()
-    driver.get("https://www.example.com")
-    # 在此处添加其他Selenium操作
-    driver.quit()
+import get_time
+from AutoGet import AutoGet
+from AutoGet_ShenQi import AutoGet_ShenQi
+from AutoGet_Normal import AutoGet_Normal
 
-# 创建线程
-threads = []
-for i in range(5):
-    t = threading.Thread(target=run_browser)
-    threads.append(t)
+import real_circum.JuBaoPen4yue1
+import real_circum.JuBaoPen4yue2
 
-# 启动线程
-for thread in threads:
-    thread.start()
+def run1():
+    x = real_circum.JuBaoPen4yue1.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x.run()
 
-# 等待所有线程完成
-for thread in threads:
-    thread.join()
+def run2():
+    x = real_circum.JuBaoPen4yue2.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x.run()
+
+
+if __name__ == '__main__':
+
+    current_path = os.path.dirname(__file__)
+
+    # 创建线程
+    threads = [
+        threading.Thread(target=run1()),
+        threading.Thread(target=run2())
+    ]
+
+    # 启动线程
+    for thread in threads:
+        thread.start()
+
+    # 等待所有线程完成
+    for thread in threads:
+        thread.join()

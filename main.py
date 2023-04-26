@@ -10,10 +10,10 @@ def test_AutoGet_ShenQi():
 
 
 def test_AutoGet_Normal():
-    x = AutoGet_Normal("https://cf.qq.com/", get_time.get_formatted_time(9, 53, 0))
+    x = AutoGet_Normal("https://cf.qq.com/", get_time.get_next_minute())
     x.run()
 
 
 if __name__ == '__main__':
-    test_AutoGet_ShenQi()
-    # test_AutoGet_Normal()
+    # test_AutoGet_ShenQi()
+    test_AutoGet_Normal()

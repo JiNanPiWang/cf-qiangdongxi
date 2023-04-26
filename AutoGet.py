@@ -15,7 +15,9 @@ from selenium.webdriver.support import expected_conditions as EC
 class AutoGet:
     def __init__(self, url, target_time):
         self.url = url
-        self.driver = webdriver.Edge('/path/to/edgedriver')
+        edge_options = webdriver.EdgeOptions()
+        edge_options.add_argument("--mute-audio")
+        self.driver = webdriver.Edge('/path/to/edgedriver', options=edge_options)
         self.current_window_handle = None
         self.target_time = datetime.strptime(target_time, '%Y-%m-%d %H:%M:%S')
 
