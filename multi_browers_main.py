@@ -1,4 +1,3 @@
-import os
 import threading
 
 import get_time
@@ -19,13 +18,10 @@ def run2():
 
 
 if __name__ == '__main__':
-
-    current_path = os.path.dirname(__file__)
-
     # 创建线程
     threads = [
-        threading.Thread(target=run1()),
-        threading.Thread(target=run2())
+        threading.Thread(target=run1),
+        threading.Thread(target=run2)
     ]
 
     # 启动线程
