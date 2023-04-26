@@ -99,10 +99,7 @@ class AutoGet:
     def _click_QueDing_alert(self):
         pass
 
-    def run(self):
-        # 登录并切换到页面
-        self._init()
-        self._turn_to_the_page()
+    def _ding_shi_qiang(self):
         if self.target_time is not None:
             # 等待抢购时间到达
             while datetime.now() < self.target_time:
@@ -111,4 +108,10 @@ class AutoGet:
             while True:
                 self._click_LingQu()
                 self._click_QueDing_alert()
+
+    def run(self):
+        # 登录并切换到页面
+        self._init()
+        self._turn_to_the_page()
+        self._ding_shi_qiang()
         # time.sleep(999999)
