@@ -41,7 +41,7 @@ class AutoGet_Normal(AutoGet):
         elem = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'qlogin_list')))
         # 执行JavaScript代码点击
         # self.driver.execute_script("document.querySelector('.face').click()")
-        elem.find_element(By.CLASS_NAME, 'img_out').click()
+        elem.find_element(By.CLASS_NAME, 'face').click()
         print('登录成功！')
 
         # 切换回去
@@ -67,7 +67,10 @@ class AutoGet_Normal(AutoGet):
 
         # 在p4box1元素中查找具有特定href属性值的a标签
         # 注意：在XPath表达式中，我将//更改为.//，以确保只在p4box1元素的子元素中查找a标签。
-        a = EC.presence_of_element_located((By.CLASS_NAME, 'p4box1')).find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick1(\'933316\',\'\',\'\',\'\',\'2\');"]')
+        # a = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'p4box1'))). \
+        #     find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick1(\'933316\',\'\',\'\',\'\',\'2\');"]')
+        a = EC.presence_of_element_located((By.CLASS_NAME, 'p4box1')).\
+            find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick1(\'933316\',\'\',\'\',\'\',\'2\');"]')
 
         # 点击a标签
         a.click()

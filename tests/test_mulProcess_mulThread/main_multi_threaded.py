@@ -7,12 +7,12 @@ import real_events.e2023_4.JuBaoPen4yue2_2023_4 as work2
 
 
 def run1():
-    x = work1.mod("https://cf.qq.com/cp/a20230403three/pc/index.shtml?e_code=535546", get_time.get_next_minute())
+    x = work1.mod("https://cf.qq.com/cp/a20230403three/pc/index.shtml?e_code=535546", get_time.get_next_2minute())
     x.run_qiang_once(need_time=True)
 
 
 def run2():
-    x = work2.mod("https://cf.qq.com/cp/a20230403three/pc/index.shtml?e_code=535546", get_time.get_next_minute())
+    x = work2.mod("https://cf.qq.com/cp/a20230403three/pc/index.shtml?e_code=535546", get_time.get_next_2minute())
     x.run_qiang_once(need_time=True)
 
 
