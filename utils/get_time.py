@@ -8,6 +8,13 @@ def get_next_minute() -> str:
     next_minute_ceiling = next_minute.replace(second=0, microsecond=0)
     return next_minute_ceiling.strftime('%Y-%m-%d %H:%M:%S')
 
+def get_next_2minute() -> str:
+    # 使用函数获取下一分钟的时间
+    current_time = datetime.now()
+    next_minute = current_time + timedelta(minutes=2)
+    next_minute_ceiling = next_minute.replace(second=0, microsecond=0)
+    return next_minute_ceiling.strftime('%Y-%m-%d %H:%M:%S')
+
 
 def get_next_hour() -> str:
     # 使用函数获取下一分钟的时间

@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from AutoGet import AutoGet
+from base_class.AutoGet import AutoGet
 
 
 class AutoGet_ShenQi(AutoGet):

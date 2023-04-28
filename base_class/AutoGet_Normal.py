@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from AutoGet import AutoGet
+from base_class.AutoGet import AutoGet
 
 
 class AutoGet_Normal(AutoGet):
@@ -38,9 +38,10 @@ class AutoGet_Normal(AutoGet):
         self.driver.switch_to.frame(login_element)
 
         # 点击QQ头像，一定要登录QQ！
-        # elem = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'qlogin_list')))
+        elem = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'qlogin_list')))
         # 执行JavaScript代码点击
-        self.driver.execute_script("document.querySelector('.face').click()")
+        # self.driver.execute_script("document.querySelector('.face').click()")
+        elem.find_element(By.CLASS_NAME, 'img_out').click()
         print('登录成功！')
 
         # 切换回去
@@ -61,12 +62,12 @@ class AutoGet_Normal(AutoGet):
         # 如抢赤血龙魂
 
         # 等待p4box1元素出现
-        wait = WebDriverWait(self.driver, 10)
-        p4box1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'p4box1')))
+        # wait = WebDriverWait(self.driver, 10)
+        # p4box1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'p4box1')))
 
         # 在p4box1元素中查找具有特定href属性值的a标签
         # 注意：在XPath表达式中，我将//更改为.//，以确保只在p4box1元素的子元素中查找a标签。
-        a = p4box1.find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick1(\'933316\',\'\',\'\',\'\',\'2\');"]')
+        a = EC.presence_of_element_located((By.CLASS_NAME, 'p4box1')).find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick1(\'933316\',\'\',\'\',\'\',\'2\');"]')
 
         # 点击a标签
         a.click()

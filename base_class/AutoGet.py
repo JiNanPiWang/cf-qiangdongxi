@@ -97,7 +97,7 @@ class AutoGet:
     def _click_QueDing_alert(self):
         pass
 
-    def _ding_shi_qiang(self):
+    def qiang_wu_xian_ci(self):
         if self.target_time is not None:
             # 等待抢购时间到达
             while datetime.now() < self.target_time:
@@ -107,9 +107,25 @@ class AutoGet:
                 self._click_LingQu()
                 self._click_QueDing_alert()
 
+    def qiang_yi_ci(self, need_time=None):
+        if self.target_time is not None:
+            # 等待抢购时间到达
+            while datetime.now() < self.target_time:
+                time.sleep(0.04)  # 每隔0.01秒检查一次时间
+            self._click_LingQu()
+            if need_time:
+                # 为了最快的测试，不调用函数
+                print(datetime.now().strftime("%H:%M:%S:%f"))
+            self._click_QueDing_alert()
+
     def run(self):
         # 登录并切换到页面
         self._init()
         self._turn_to_the_page()
-        self._ding_shi_qiang()
+        self.qiang_wu_xian_ci()
         # time.sleep(999999)
+
+    def run_qiang_once(self, need_time=None):
+        self._init()
+        self._turn_to_the_page()
+        self.qiang_yi_ci(need_time)
