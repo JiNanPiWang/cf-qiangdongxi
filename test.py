@@ -1,18 +1,16 @@
-class Parent:
-    def __init__(self):
-        self.name = "Parent"
+class Grandparent:
+    def foo(self):
+        print("Grandparent's foo")
 
-    def greet(self):
-        print(f"Hello, I'm {self.name}")
+class Parent(Grandparent):
+    def foo(self):
+        super().foo()
+        print("Parent's foo")
 
 class Child(Parent):
-    def __init__(self):
-        super().__init__()
-        self.name = "Child"
+    def foo(self):
+        super(Parent, self).foo()
+        print("Child's foo")
 
-    def say_hello(self):
-        # 不需要传递 self 参数
-        super().greet()
-
-child = Child()
-child.say_hello()  # 输出：Hello, I'm C
+c = Child()
+c.foo()

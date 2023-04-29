@@ -16,16 +16,16 @@ class AutoGet_Normal(AutoGet):
     def _init(self):
         super()._init()
 
-        # 关闭弹出视频
-        self._shut_down_pop_video()
+        # # 关闭弹出视频
+        # self._shut_down_pop_video()
 
         # 登录
         self._login()
 
-        # 关闭弹出视频
-        self._shut_down_pop_video()
-        time.sleep(random.uniform(1, 2))
-        self._shut_down_pop_video()
+        # # 关闭弹出视频
+        # self._shut_down_pop_video()
+        # time.sleep(random.uniform(1, 2))
+        # self._shut_down_pop_video()
 
     def _login(self):
         # 正常情况登录
