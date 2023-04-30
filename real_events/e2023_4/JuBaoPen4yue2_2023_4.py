@@ -1,3 +1,6 @@
+import random
+import time
+
 from base_class import AutoGet_Normal
 
 from selenium.webdriver.common.by import By
@@ -25,3 +28,17 @@ class mod(AutoGet_Normal.AutoGet_Normal):
 
         # 点击a标签
         a.click()
+
+    def _init(self):
+        super(AutoGet_Normal.AutoGet_Normal)._init()
+
+        # 关闭弹出视频
+        self._shut_down_pop_video()
+
+        # 登录
+        self._login()
+
+        # 关闭弹出视频
+        self._shut_down_pop_video()
+        time.sleep(random.uniform(1, 2))
+        self._shut_down_pop_video()

@@ -50,7 +50,14 @@ class AutoGet_Normal(AutoGet):
     def _turn_to_the_page(self):
         # <a href="javascript:;" class="sp nav4" id="nav4" data-num="4" onclick="PTTSendClick('btn','click4','切换4 ');">
         # 选择class="sp nav4"即可，需注意父类
-        self.driver.execute_script("document.querySelector('.nvabox2 .sp.nav4').click()")
+        # self.driver.execute_script("document.querySelector('.nvabox2 .sp.nav4').click()")
+
+        wait = WebDriverWait(self.driver, 10)
+        # presence_of_element_located一旦元素被找到了，你就可以在其中查找子元素并执行操作。
+        elem_parent = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'nvabox2')))
+        # 使用了 element_to_be_clickable 条件来确保元素已经加载并且处于可点击状态
+        elem_son = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'sp.nav4')))
+        elem_son.click()
 
     def _click_LingQu(self):
         # <div class="p4box1 flex">
