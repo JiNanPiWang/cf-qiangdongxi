@@ -15,11 +15,12 @@ def run2():
     x.run()
 
 
+
 def multi_process():
     # 创建进程
     processes = [
         multiprocessing.Process(target=run1),
-        multiprocessing.Process(target=run2)
+        multiprocessing.Process(target=run2),
     ]
 
     # 启动进程
@@ -35,7 +36,8 @@ def multi_thread():
     # 创建线程
     threads = [
         threading.Thread(target=run1),
-        threading.Thread(target=run2)
+        threading.Thread(target=run2),
+        threading.Thread(target=run3)
     ]
 
     # 启动线程

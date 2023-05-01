@@ -16,11 +16,12 @@ def run2():
     x.run_qiang_once(need_time=True)
 
 
+
 if __name__ == '__main__':
     # 创建进程
     processes = [
         multiprocessing.Process(target=run1),
-        multiprocessing.Process(target=run2)
+        multiprocessing.Process(target=run2),
     ]
 
     # 启动进程

@@ -111,7 +111,7 @@ class AutoGet:
         if self.target_time is not None:
             # 等待抢购时间到达
             while datetime.now() < self.target_time:
-                time.sleep(0.04)  # 每隔0.01秒检查一次时间
+                time.sleep(0.01)  # 每隔0.01秒检查一次时间
             self._click_LingQu()
             if need_time:
                 # 为了最快的测试，不调用函数
