@@ -6,14 +6,17 @@ from utils import get_time
 import real_events.e2023_5.FuLiFengBao_JinNiuZuo as work1
 import real_events.e2023_5.FuLiFengBao_QBZ as work2
 
+def work_time():
+    # 一秒等于一百万（1,000,000）微秒。
+    return get_time.get_next_minute_mirco_early(850000)
+    # return get_time.get_next_minute()
 
 def run1():
-    x = work1.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x = work1.mod("https://cf.qq.com/", work_time())
     x.run_qiang_once(need_time=True)
 
-
 def run2():
-    x = work2.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x = work2.mod("https://cf.qq.com/", work_time())
     x.run_qiang_once(need_time=True)
 
 

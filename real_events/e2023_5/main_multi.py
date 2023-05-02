@@ -7,7 +7,7 @@ import real_events.e2023_5.FuLiFengBao_JinNiuZuo as work1
 import real_events.e2023_5.FuLiFengBao_QBZ as work2
 
 def work_time():
-    return get_time.get_next_hour()
+    return get_time.get_next_hour_micro_early(900000)
 
 def run1():
     x = work1.mod("https://cf.qq.com/", work_time())

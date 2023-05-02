@@ -15,7 +15,7 @@ class AutoGet:
         edge_options.add_argument("--mute-audio")
         self.driver = webdriver.Edge('/path/to/edgedriver', options=edge_options)
         self.current_window_handle = None
-        self.target_time = datetime.strptime(target_time, '%Y-%m-%d %H:%M:%S')
+        self.target_time = datetime.strptime(target_time, '%Y-%m-%d %H:%M:%S:%f')
 
     def _shut_down_pop_video(self):
         # 找到弹出的视频
