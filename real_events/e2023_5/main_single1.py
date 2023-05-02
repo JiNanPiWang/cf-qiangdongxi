@@ -12,7 +12,7 @@ def test_AutoGet_ShenQi():
 
 
 def test_AutoGet_Normal():
-    x = work1.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x = work1.mod("https://cf.qq.com/", get_time.get_next_hour())
     x.run()
     time.sleep(999999)
 

@@ -3,18 +3,19 @@ import threading
 
 from utils import get_time
 
-import real_events.e2023_5.FuLiFengBao_TianShiWanOu as work1
+import real_events.e2023_5.FuLiFengBao_JinNiuZuo as work1
 import real_events.e2023_5.FuLiFengBao_QBZ as work2
 
+def work_time():
+    return get_time.get_next_hour()
+
 def run1():
-    x = work1.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x = work1.mod("https://cf.qq.com/", work_time())
     x.run()
 
 def run2():
-    x = work2.mod("https://cf.qq.com/", get_time.get_next_minute())
+    x = work2.mod("https://cf.qq.com/", work_time())
     x.run()
-
-
 
 def multi_process():
     # 创建进程
@@ -37,7 +38,6 @@ def multi_thread():
     threads = [
         threading.Thread(target=run1),
         threading.Thread(target=run2),
-        threading.Thread(target=run3)
     ]
 
     # 启动线程

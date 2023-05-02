@@ -8,11 +8,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from base_class.AutoGet import AutoGet
 
-
 class mod(TianShi.mod):
     def _click_LingQu(self):
-        a = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'p5-zhzs-box'))). \
-            find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick(\'942290\',\'\',\'\',\'\',\'1\');"]')
+        a = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'p5-wantonly-box'))). \
+            find_element(By.XPATH, './/a[@href="javascript:DM.df.getClick(\'942035\',\'\',\'\',\'\',\'4\');"]')
 
         # 点击a标签
         a.click()
