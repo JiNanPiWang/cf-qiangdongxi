@@ -9,7 +9,7 @@ def get_next_minute() -> str:
     return next_minute_ceiling.strftime('%Y-%m-%d %H:%M:%S:%f')
 
 
-def get_next_minute_mirco_early(microseconds: int = 800000) -> str:
+def get_next_minute_micro_early(microseconds: int = 800000) -> str:
     # 使用函数获取下一分钟的时间
     current_time = datetime.now()
     next_minute = current_time

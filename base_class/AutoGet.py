@@ -1,4 +1,5 @@
 import time
+import platform
 from datetime import datetime
 
 import selenium.common.exceptions
@@ -11,11 +12,19 @@ from selenium.webdriver.support.wait import WebDriverWait
 class AutoGet:
     def __init__(self, url, target_time):
         self.url = url
-        edge_options = webdriver.EdgeOptions()
-        edge_options.add_argument("--mute-audio")
-        self.driver = webdriver.Edge('/path/to/edgedriver', options=edge_options)
+        self.os_type = platform.system()
         self.current_window_handle = None
         self.target_time = datetime.strptime(target_time, '%Y-%m-%d %H:%M:%S:%f')
+
+        chrome_options = webdriver.ChromeOptions()
+        edge_options = webdriver.EdgeOptions()
+        if self.os_type == 'Linux':  # Linux 系统
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--disable-gpu')
+            self.driver = webdriver.Chrome('/path/to/chromedriver', options=chrome_options)
+        else:
+            edge_options.add_argument("--mute-audio")
+            self.driver = webdriver.Edge('/path/to/edgedriver', options=edge_options)
 
     def _shut_down_pop_video(self):
         # 找到弹出的视频

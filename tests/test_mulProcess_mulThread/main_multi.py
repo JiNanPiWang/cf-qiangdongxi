@@ -8,7 +8,7 @@ import real_events.e2023_5.FuLiFengBao_QBZ as work2
 
 def work_time():
     # 一秒等于一百万（1,000,000）微秒。
-    return get_time.get_next_minute_mirco_early(850000)
+    return get_time.get_next_minute_micro_early(850000)
     # return get_time.get_next_minute()
 
 def run1():
