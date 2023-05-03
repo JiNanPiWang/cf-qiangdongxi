@@ -1,4 +1,10 @@
 import time
+import os
+import sys
+import platform
+
+if platform.system() == 'Linux':
+    sys.path.append("../..")
 
 from utils import get_time
 from base_class.AutoGet_ShenQi import AutoGet_ShenQi
