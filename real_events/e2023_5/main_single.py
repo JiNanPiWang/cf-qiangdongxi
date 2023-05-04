@@ -12,7 +12,7 @@ from base_class.AutoGet_Normal import AutoGet_Normal
 import real_events.e2023_5.FuLiFengBao_JinNiuZuo as work1
 
 def test_AutoGet_Normal():
-    x = work1.mod("https://cf.qq.com/", get_time.get_next_minute_micro_early(800000))
+    x = work1.mod("https://cf.qq.com/", get_time.get_next_hour_micro_early(860000))
     x.run()
     time.sleep(999999)
 
