@@ -64,6 +64,9 @@ class AutoGet:
     def _login_thru_passwd(self):
         pass
 
+    def _get_name_passwd_from_txt(self, filename):
+        pass
+
     def _open_new_window(self, new_window_url):
         # 开一个新窗口，并将driver转换到该窗口，url是new_window_url
         # 获取当前窗口的句柄

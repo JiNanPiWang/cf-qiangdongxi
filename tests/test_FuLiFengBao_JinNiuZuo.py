@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base_class.AutoGet import AutoGet
+from base_class.AutoGet_Normal import AutoGet_Normal
 
 class mod(TianShi.mod):
     def _click_LingQu(self):
@@ -19,25 +20,17 @@ class mod(TianShi.mod):
         # print(f'金牛座函数点击前计算时间：{datetime.now().strftime("%H:%M:%S:%f")}')
         a.click()
 
-    def _login(self):
-        super()._touch_top_login_button()
+    def _init(self):
+        # 直接覆盖AutoGet的_init，而不是AutoGet_Normal
+        super(AutoGet_Normal, self)._init()
 
-        # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
-        login_element = self.driver.find_element(By.ID, "loginIframe")
+        # # 关闭弹出视频
+        # self._shut_down_pop_video()
 
-        # 使用switch_to.frame()方法切换到该iframe中
-        self.driver.switch_to.frame(login_element)
+        # 登录
+        self._login_thru_passwd()
 
-        # 找到密码登录四个字
-        passwd_login = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'switcher_plogin')))
-        passwd_login.click()
-
-        # username = driver.find_element_by_name('username')
-        # password = driver.find_element_by_name('password')
-        # username.send_keys('your_username')
-        # password.send_keys('your_password')
-
-        # 切换回去
-        self.driver.switch_to.default_content()
-
-        pass
+        # # 关闭弹出视频
+        # self._shut_down_pop_video()
+        # time.sleep(random.uniform(1, 2))
+        # self._shut_down_pop_video()

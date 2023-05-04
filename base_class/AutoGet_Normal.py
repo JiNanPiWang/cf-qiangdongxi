@@ -28,7 +28,7 @@ class AutoGet_Normal(AutoGet):
         # self._shut_down_pop_video()
 
     def _login(self):
-        # 正常情况登录
+        # 正常情况登录，这一功能不能分出，因为超级神器登录不用点击登录按钮
         super()._touch_top_login_button()
 
         # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
@@ -50,6 +50,16 @@ class AutoGet_Normal(AutoGet):
         # 切换回去
         self.driver.switch_to.default_content()
 
+    def _get_name_passwd_from_txt(self, filename):
+        # 打开txt文件并逐行读取其中的内容
+        with open(filename, 'r') as f:
+            lines = f.readlines()
+
+        # 输出txt文件每一行的内容
+        # for line in lines:
+        #     print(line)
+        return lines[0], lines[1]
+
     def _login_thru_passwd(self):
         super()._touch_top_login_button()
 
@@ -63,10 +73,8 @@ class AutoGet_Normal(AutoGet):
         passwd_login = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'switcher_plogin')))
         passwd_login.click()
 
-        # username = driver.find_element_by_name('username')
-        # password = driver.find_element_by_name('password')
-        # username.send_keys('your_username')
-        # password.send_keys('your_password')
+        username, password = self._get_name_passwd_from_txt('../utils/credentials.txt')
+
 
         # 切换回去
         self.driver.switch_to.default_content()
