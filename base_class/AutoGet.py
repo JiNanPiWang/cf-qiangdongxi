@@ -21,6 +21,8 @@ class AutoGet:
         if self.os_type == 'Linux':  # Linux 系统
             chrome_options.add_argument('--headless')
             chrome_options.add_argument('--disable-gpu')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
             self.driver = webdriver.Chrome('/path/to/chromedriver', options=chrome_options)
         else:
             edge_options.add_argument("--mute-audio")
