@@ -32,12 +32,15 @@ class AutoGet_Normal(AutoGet):
         super()._touch_top_login_button()
 
         # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
-        login_element = self.driver.find_element(By.ID, "loginIframe")
+        # login_element = self.driver.find_element(By.ID, "loginIframe")
+        # 加入显示等待
+        login_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'loginIframe')))
 
         # 使用switch_to.frame()方法切换到该iframe中
         self.driver.switch_to.frame(login_element)
 
         # 点击QQ头像，一定要登录QQ！
+        # 下面语句功能包括find_element
         elem = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'qlogin_list')))
         # 执行JavaScript代码点击
         # self.driver.execute_script("document.querySelector('.face').click()")
@@ -51,7 +54,7 @@ class AutoGet_Normal(AutoGet):
         super()._touch_top_login_button()
 
         # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
-        login_element = self.driver.find_element(By.ID, "loginIframe")
+        login_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'loginIframe')))
 
         # 使用switch_to.frame()方法切换到该iframe中
         self.driver.switch_to.frame(login_element)
