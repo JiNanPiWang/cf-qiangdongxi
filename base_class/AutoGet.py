@@ -56,6 +56,12 @@ class AutoGet:
         except selenium.common.exceptions.ElementClickInterceptedException:
             print('直接弹出登录窗口，无需点击登录按钮')
 
+    def _login(self):
+        pass
+
+    def _login_thru_passwd(self):
+        pass
+
     def _open_new_window(self, new_window_url):
         # 开一个新窗口，并将driver转换到该窗口，url是new_window_url
         # 获取当前窗口的句柄

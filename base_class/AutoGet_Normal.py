@@ -47,6 +47,10 @@ class AutoGet_Normal(AutoGet):
         # 切换回去
         self.driver.switch_to.default_content()
 
+    def _login_thru_passwd(self):
+        super()._touch_top_login_button()
+        pass
+
     def _turn_to_the_page(self):
         # 方法1：
         # <a href="javascript:;" class="sp nav4" id="nav4" data-num="4" onclick="PTTSendClick('btn','click4','切换4 ');">
