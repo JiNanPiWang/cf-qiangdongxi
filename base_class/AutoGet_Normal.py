@@ -49,6 +49,25 @@ class AutoGet_Normal(AutoGet):
 
     def _login_thru_passwd(self):
         super()._touch_top_login_button()
+
+        # 登录页面是表单内嵌的页面，需要定位到iframe元素，通过id来定位
+        login_element = self.driver.find_element(By.ID, "loginIframe")
+
+        # 使用switch_to.frame()方法切换到该iframe中
+        self.driver.switch_to.frame(login_element)
+
+        # 找到密码登录四个字
+        passwd_login = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'switcher_plogin')))
+        passwd_login.click()
+
+        # username = driver.find_element_by_name('username')
+        # password = driver.find_element_by_name('password')
+        # username.send_keys('your_username')
+        # password.send_keys('your_password')
+
+        # 切换回去
+        self.driver.switch_to.default_content()
+
         pass
 
     def _turn_to_the_page(self):

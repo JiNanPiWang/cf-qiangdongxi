@@ -28,6 +28,8 @@ class AutoGet:
             edge_options.add_argument("--mute-audio")
             self.driver = webdriver.Edge('/path/to/edgedriver', options=edge_options)
 
+        self._wait = WebDriverWait(self.driver, 10)
+
     def _shut_down_pop_video(self):
         # 找到弹出的视频
         # 等待时间5秒，如果不出现则抛出超时异常
