@@ -9,10 +9,11 @@ if platform.system() == 'Linux':
 from utils import get_time
 from base_class.AutoGet_ShenQi import AutoGet_ShenQi
 from base_class.AutoGet_Normal import AutoGet_Normal
-import real_events.e2023_5.JuBaoPen as work1
+import real_events.e2023_5.ChaoJiShenQi as work1
+# import base_class.AutoGet_ShenQi as work1
 
 def test():
-    x = work1.mod("https://cf.qq.com/", get_time.get_next_hour_micro_early(900000))
+    x = work1.mod("https://cf.qq.com/cp/a20230407rlr/lr/index.shtml", get_time.get_next_minute_micro_early(900000))
     x.run()
     time.sleep(999999)
 
