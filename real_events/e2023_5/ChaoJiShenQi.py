@@ -27,5 +27,5 @@ class mod(AutoGet_ShenQi):
 
             while True:
                 self._click_LingQu()
-                time.sleep(0.01)
+                time.sleep(random.uniform(0.01, 0.02))
                 self._click_QueDing_alert()
